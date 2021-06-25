@@ -25,4 +25,15 @@ public class UserServiceImpl implements UserService {
     public List<User> loginUser(String username, String password) {
         return um.loginUser(username,password);
     }
+
+    @Override
+    public List<User> AllUser() {
+        return um.AllUser();
+    }
+
+    @Override
+    public int AddUser(String loginName, String userName, String password, int sex, String identityCode, String email, String mobile, int type) {
+        return um.AddUser(loginName,userName ,password,sex ,identityCode,email ,mobile,type);
+
+    }
 }

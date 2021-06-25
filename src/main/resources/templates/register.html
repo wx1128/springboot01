@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/toregister" method="post">
+    <div align="center">
+        <div align="left" style="border:5px solid gainsboro; width: 300px; right: 150px; background-color:gainsboro;">
+
+            <p> 登入名:&nbsp;<input type="text" name="loginname"></p>
+
+            <p>用户名:&nbsp;<input type="text" name="username"></p>
+
+            <p> 密码:&nbsp;<input type="text" name="password"></p>
+
+            <p> 性别:&nbsp;<select id="sid" name="sex" style="width: 177px;" onchange="selectcity()">
+                <option>---请选择---</option>
+                <option value="男" selected="selected">男</option>
+                <option value="女">女</option>
+            </select></p>
+
+            <p> 身份证:&nbsp;<input type="text" name="identityCode"></p>
+
+            <p> 邮箱:&nbsp;<input type="text" name="email"></p>
+
+            <p>电话:&nbsp;<input type="text" name="mobile"></p>
+
+            <p> 类型:&nbsp;<input style="color: darkgrey;" type="text" name="type" value="0" readonly="readonly"><span
+                    style=" color: red;; font-size: 1px;">不可更改</span></p>
+
+            <p><input type="submit" style="width: 300px; right: 200px;" value="注册"></p>
+        </div>
+        <br>
+    </div>
+</form>
+</body>
+</html>

@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>登入成功</title>
+
 </head>
 <body>
-<h1>11111111111111111111111111111</h1>
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>登录名</th>
+        <th>用户名</th>
+        <th>密码</th>
+        <th>性别</th>
+        <th>身份证</th>
+        <th>邮箱</th>
+        <th>电话</th>
+        <th>类型</th>
+        <th>更新时间</th>
+    </tr>
+    <tr th:each="user,userStat:${allUser}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.userName}"></td>
+        <td th:text="${user.loginName}">}</td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.sex}"></td>
+        <td th:text="${user.identityCode}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.mobile}"></td>
+        <td th:text="${user.type}"></td>
+        <td th:text="${time}"></td>
+    </tr>
+</table>
 </body>
 </html>

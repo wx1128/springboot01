@@ -14,4 +14,6 @@ import java.util.List;
  */
 public interface UserService {
     List<User> loginUser(String username, String password);
+    List<User> AllUser();
+    int AddUser(String loginName,String userName,String password,int sex,String identityCode,String email,String mobile,int type);
 }
