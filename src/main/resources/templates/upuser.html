@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改用户</title>
+</head>
+<body>
+<form action="/toupus" method="post">
+    <div align="center" >
+        <div th:each="user,userStat:${user}" align="left" style="border:5px solid gainsboro; width: 300px; right: 150px; background-color:gainsboro;">
+            <input type="text" name="id" th:value="${user.id}" style="display:none;">
+            <p> 登入名:&nbsp;<input type="text" name="loginname" th:value="${user.userName}" ></p>
+
+            <p>用户名:&nbsp;<input type="text" name="username"  th:value="${user.userName}" ></p>
+
+            <p> 密码:&nbsp;<input type="text" name="password"  th:value="${user.password}" ></p>
+
+            <p> 性别:&nbsp;<select  name="sex" style="width: 177px;" onchange="selectcity()">
+                <option>---请选择---</option>
+                <option value="男" selected="selected">男</option>
+                <option value="女">女</option>
+            </select></p>
+
+            <p> 身份证:&nbsp;<input type="text" name="identityCode"  th:value="${user.identityCode}" ></p>
+
+            <p> 邮箱:&nbsp;<input type="text" name="email"  th:value="${user.email}" ></p>
+
+            <p>电话:&nbsp;<input type="text" name="mobile"  th:value="${user.mobile}" ></p>
+            <p><input type="submit" style="width: 300px; right: 200px;" value="确定修改"></p>
+
+        </div>
+        <br>
+    </div>
+</form>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.zy.springboot01.service;
 
 import com.zy.springboot01.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,6 +15,9 @@ import java.util.List;
  */
 public interface UserService {
     List<User> loginUser(String username, String password);
+    List<User> IdUser(int id);
     List<User> AllUser();
     int AddUser(String loginName,String userName,String password,int sex,String identityCode,String email,String mobile,int type);
+    int DelUser(int id);
+    int UpUser(int id,String loginName,String userName,String password,int sex,String identityCode,String email,String mobile);
 }

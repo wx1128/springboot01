@@ -20,8 +20,13 @@ import java.util.List;
 public interface UserMapper {
     List<User> loginUser(@Param("username") String username, @Param("password") String password);
 
+    List<User> IdUser(@Param("id") int id);
+
     List<User> AllUser();
 
-    int AddUser(@Param("loginName") String loginName,@Param("userName") String userName,@Param("password") String password,@Param("sex") int sex,@Param("identityCode") String identityCode,@Param("email") String email,@Param("mobile") String mobile,@Param("type") int type);
+    int AddUser(@Param("loginName") String loginName, @Param("userName") String userName, @Param("password") String password, @Param("sex") int sex, @Param("identityCode") String identityCode, @Param("email") String email, @Param("mobile") String mobile, @Param("type") int type);
 
+    int DelUser(@Param("id") int id);
+
+    int UpUser(@Param("id") int id,@Param("loginName") String loginName, @Param("userName") String userName, @Param("password") String password, @Param("sex") int sex, @Param("identityCode") String identityCode, @Param("email") String email, @Param("mobile") String mobile);
 }

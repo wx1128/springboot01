@@ -18,11 +18,13 @@
         <th>电话</th>
         <th>类型</th>
         <th>更新时间</th>
+        <th>操作</th>
     </tr>
     <tr th:each="user,userStat:${allUser}">
-        <td th:text="${user.id}"></td>
+        <td ></td>
+        <td th:text="${user.id}" id=""></td>
         <td th:text="${user.userName}"></td>
-        <td th:text="${user.loginName}">}</td>
+        <td th:text="${user.loginName}"></td>
         <td th:text="${user.password}"></td>
         <td th:text="${user.sex}"></td>
         <td th:text="${user.identityCode}"></td>
@@ -30,6 +32,11 @@
         <td th:text="${user.mobile}"></td>
         <td th:text="${user.type}"></td>
         <td th:text="${time}"></td>
+        <td><a th:href="@{'/upus/'+${user.id}}">更改</a>/
+            <a th:href="@{'/del/'+${user.id}}">删除</a></td>
+
+
+
     </tr>
 </table>
 </body>

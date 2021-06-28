@@ -6,9 +6,7 @@ import com.zy.springboot01.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,21 +25,10 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserMapper um;
-    //登录页面
-    @RequestMapping("lu")
-    public String touserlogin() {
 
-        return "userlogin";
-    }
-    //注册页面
-    @RequestMapping("rt")
-    public String toregister() {
-
-        return "register";
-    }
     //登录判断
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String tologin(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public String logins(@RequestParam("username") String username, @RequestParam("password") String password) {
 
         List<User> lotus = um.loginUser(username, password);
 
@@ -55,7 +42,7 @@ public class UserController {
     }
     //主页加载用户全部信息
     @RequestMapping("homepage")
-    public String SelUser(Model model) {
+    public String SelUsers(Model model) {
         List<User> allUser = um.AllUser();
         for (User user : allUser) {
             System.out.println(user);
@@ -70,8 +57,8 @@ public class UserController {
     //注册
     @RequestMapping(value = "/toregister", method = RequestMethod.POST)
     public String AddUsers(@RequestParam("username") String username, @RequestParam("loginname") String loginname, @RequestParam("password") String password, @RequestParam("sex") String sx, @RequestParam("identityCode") String identityCode, @RequestParam("email") String email, @RequestParam("mobile") String mobile, @RequestParam("type") String tpe) {
-        if(username!="" && loginname!=""  && password!=""  && identityCode!=""  && email!=""  && mobile!=""){
-            return "register";
+        if(username=="" && loginname==""  && password==""  && identityCode==""  && email==""  && mobile==""){
+            return  "register";
         }
         int sex=0;
         if (sx=="男"){
@@ -84,9 +71,51 @@ public class UserController {
         Object ob=null;
                 ob=um.AddUser(loginname, username, password, sex, identityCode, email, mobile, type);
         if (ob!=null) {
-            return "userlogin";
+            return "index";
         }
-        return "register";
+        return "index";
+    }
+    //删除
+    @RequestMapping("/del/{id}")
+    public String DelUsers(@PathVariable("id")int id){
+        if (um.DelUser(id)>0){
+            return "home";
+        }
+        return "home";
     }
 
+
+    //修改
+    @RequestMapping("/upus/{id}")
+    public String UpUsers(@PathVariable("id")int id,Model model){
+        System.out.println(um.IdUser(id));
+        model.addAttribute("user", um.IdUser(id));
+        return "upuser";
+    }
+    @RequestMapping(value = "/toupus",method = RequestMethod.POST)
+    public String UpUsers2(@RequestParam("id")String i,
+                            @RequestParam("username") String username,
+                           @RequestParam("loginname") String loginname,
+                           @RequestParam("password") String password,
+                           @RequestParam("sex") String sx,
+                           @RequestParam("identityCode") String identityCode,
+                           @RequestParam("email") String email,
+                           @RequestParam("mobile") String mobile){
+        System.out.println("00000000000000000000");
+        if(username=="" && loginname==""  && password==""  && identityCode==""  && email==""  && mobile==""){
+            return  "register";
+        }
+
+         int id= Integer.valueOf(i).intValue();
+
+        int sex=0;
+        if (sx.equals("男")){
+            sex=1;
+        }
+
+        Object ob=um.UpUser(id,loginname, username, password, sex, identityCode, email, mobile);
+        System.out.println(ob);
+            return "home";
+
+    }
 }

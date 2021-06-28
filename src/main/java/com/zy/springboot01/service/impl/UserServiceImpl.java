@@ -27,6 +27,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> IdUser(int id) {
+        return um.IdUser(id);
+    }
+
+    @Override
     public List<User> AllUser() {
         return um.AllUser();
     }
@@ -36,4 +41,16 @@ public class UserServiceImpl implements UserService {
         return um.AddUser(loginName,userName ,password,sex ,identityCode,email ,mobile,type);
 
     }
+
+    @Override
+    public int DelUser(int id) {
+        return um.DelUser(id);
+    }
+
+    @Override
+    public int UpUser(int id,String loginName, String userName, String password, int sex, String identityCode, String email, String mobile) {
+        return um.UpUser(id,loginName,userName,password,sex,identityCode,email,mobile);
+    }
+
+
 }
