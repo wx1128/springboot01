@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.springboot01.dao.NewsMapper" >
+    <select id="finById" resultType="com.zy.springboot01.pojo.News">
+    select * from easybuy_news where id=#{id}
+    </select>
+
+    <select id="finBytitle" resultType="com.zy.springboot01.pojo.News">
+    select id,title from easybuy_news where title=#{title}
+
+    </select>
+
+    <select id="finNewsAll" resultType="com.zy.springboot01.pojo.News">
+        select * from easybuy_news
+
+    </select>
+
+</mapper>

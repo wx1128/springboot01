@@ -18,15 +18,21 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserMapper {
-    List<User> loginUser(@Param("username") String username, @Param("password") String password);
+    //登入验证
+    List<User> loginUser(String username, String password);
 
-    List<User> IdUser(@Param("id") int id);
+    List<User> IdUser(int id);
 
     List<User> AllUser();
 
-    int AddUser(@Param("loginName") String loginName, @Param("userName") String userName, @Param("password") String password, @Param("sex") int sex, @Param("identityCode") String identityCode, @Param("email") String email, @Param("mobile") String mobile, @Param("type") int type);
+    List<User> SlUser(int sex);
 
-    int DelUser(@Param("id") int id);
+    int AddUser(String loginName,String userName,  String password,int sex,  String identityCode, String email, String mobile, int type);
 
-    int UpUser(@Param("id") int id,@Param("loginName") String loginName, @Param("userName") String userName, @Param("password") String password, @Param("sex") int sex, @Param("identityCode") String identityCode, @Param("email") String email, @Param("mobile") String mobile);
+    int DelUser( int id);
+
+    int UpUser(int id, String loginName,
+                String userName, String password,
+               int sex,String identityCode,
+               String email, String mobile);
 }

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script>
+        $(document).ready(function (){
+            $("#btn1").click(function (){
+             test1();
+             });
+            $("#btn2").click(function (){
+                $.test2();
+            });
+        });
+        function test1(){
+            $.ajax({
+                url:'getAll', //路径
+                type:'get',
+                dataType:'json', //格式
+                success:function (data){
+                    $("#tabletest").find('tr').remove();
+                    tr='<td>id</td> <td>活动名</td> <td>活动内容</td> <td>活动时间</td>'
+
+                    $('#tabletest').append('<tr>'+tr+'</tr>')
+                    for (i in data ){
+                        var tr;
+                        tr='<td>'+data[i].id+'</td>' +'<td>'+data[i].title+'</td>'+'<td>'+data[i].content+'</td>'+'<td>'+data[i].createTime+'</td>'
+                        $('#tabletest').append('<tr>'+tr+'</tr>')
+                    }
+                }
+            });
+        }
+
+        $.test2= function (){
+            $.ajax({
+                url:'getnews', //路径
+                type:'get',
+                dataType:'json', //格式
+                contentType:'application/json',
+                data:{"id":$("#id").val()},
+                success:function (data){
+                    $("#tabletest").find('tr').remove();
+                    tr='<td>id</td> <td>活动名</td> <td>活动内容</td> <td>活动时间</td>'
+
+                    $('#tabletest').append('<tr>'+tr+'</tr>')
+                        var tr;
+                        tr='<td>'+data.id+'</td>' +'<td>'+data.title+'</td>'+'<td>'+data.content+'</td>'+'<td>'+data.createTime+'</td>'
+                        $('#tabletest').append('<tr>'+tr+'</tr>')
+                },
+                error:function (XMLHttpRequest,textStatus,errorThrown){
+                    alert("没有查询到数据");
+                    $("#tabletest").find('tr').remove();
+                }
+            });
+        }
+    </script>
+    <style type="text/css">
+
+        ul{
+            position: relative;
+            display: flex;
+        }
+        a{
+            color: #A9A9A9;
+        }
+        ul li{
+            border-style: solid;
+            border-color: darkgray;
+            list-style: none;
+            line-height: 50px;
+            margin: 0 5px;
+        }
+        ul li.pageNumber{
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+        ul li a{
+            display: block;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50%;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>活动界面</title>
+
+</head>
+<body>
+    <button id="btn1">查询所有</button>
+    搜索查询:<input type="text" placeholder="请输入id" id="id" name="id" >
+    <button id="btn2">查询</button>
+
+
+<table border="1" id="tabletest">
+</table>
+
+<ul>
+    <li class="pageNumber"><a href="#" class="prev">首页</a></li>
+    <li class="pageNumber"><a href="#">上一页</a></li>
+    <li class="pageNumber"><a href="#">1</a></li>
+    <li class="pageNumber"><a href="#">2</a></li>
+    <li class="pageNumber"><a href="#">下一页</a></li>
+    <li class="pageNumber"><a href="#" class="next">末页</a></li>
+</ul>
+</body>
+</html>

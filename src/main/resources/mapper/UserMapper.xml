@@ -14,8 +14,12 @@
     </select>
 
     <select id="AllUser" resultType="com.zy.springboot01.pojo.User">
-        SELECT *
-        FROM easybuy_user
+        SELECT * FROM easybuy_user
+
+    </select>
+
+    <select id="SlUser" resultType="com.zy.springboot01.pojo.User">
+        SELECT * FROM easybuy_user WHERE sex = #{sex}
     </select>
 
     <insert id="AddUser" parameterType="com.zy.springboot01.pojo.User">

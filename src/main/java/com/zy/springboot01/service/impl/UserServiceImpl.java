@@ -37,6 +37,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> SlUser(int sex) {
+        return um.SlUser(sex);
+    }
+
+    @Override
     public int AddUser(String loginName, String userName, String password, int sex, String identityCode, String email, String mobile, int type) {
         return um.AddUser(loginName,userName ,password,sex ,identityCode,email ,mobile,type);
 

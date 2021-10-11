@@ -1,43 +1,88 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <style>
+
+        ul{
+            position: relative;
+            display: flex;
+        }
+        a{
+            color: #A9A9A9;
+        }
+        ul li{
+            border-style: solid;
+            border-color: darkgray;
+            list-style: none;
+            line-height: 50px;
+            margin: 0 5px;
+        }
+        ul li.pageNumber{
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+        ul li a{
+            display: block;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50%;
+        }
+
+    </style>
     <meta charset="UTF-8">
     <title>登入成功</title>
 
 </head>
 <body>
-<table border="1">
-    <tr>
-        <th>id</th>
-        <th>登录名</th>
-        <th>用户名</th>
-        <th>密码</th>
-        <th>性别</th>
-        <th>身份证</th>
-        <th>邮箱</th>
-        <th>电话</th>
-        <th>类型</th>
-        <th>更新时间</th>
-        <th>操作</th>
-    </tr>
-    <tr th:each="user,userStat:${allUser}">
-        <td ></td>
-        <td th:text="${user.id}" id=""></td>
-        <td th:text="${user.userName}"></td>
-        <td th:text="${user.loginName}"></td>
-        <td th:text="${user.password}"></td>
-        <td th:text="${user.sex}"></td>
-        <td th:text="${user.identityCode}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.mobile}"></td>
-        <td th:text="${user.type}"></td>
-        <td th:text="${time}"></td>
-        <td><a th:href="@{'/upus/'+${user.id}}">更改</a>/
-            <a th:href="@{'/del/'+${user.id}}">删除</a></td>
+<form action="/slhome" method="post">
 
+    搜索查询:<input type="text" id="sex" name="sex"><input type="submit" value="搜索" />
+    <div th:text="${err}"></div>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>登录名</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>性别</th>
+            <th>身份证</th>
+            <th>邮箱</th>
+            <th>电话</th>
+            <th>类型</th>
+            <th>更新时间</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="user,userStat:${allUser}">
+            <td th:text="${user.id}" id=""></td>
+            <td th:text="${user.userName}"></td>
+            <td th:text="${user.loginName}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.sex}"></td>
+            <td th:text="${user.identityCode}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.mobile}"></td>
+            <td th:text="${user.type}"></td>
+            <td th:text="${time}"></td>
+            <td><a th:href="@{'/upus/'+${user.id}}">更改</a>/
+                <a th:href="@{'/del/'+${user.id}}">删除</a></td>
 
+        </tr>
+    </table>
+</form>
+<from action="/mynews/news">
+    <input type="submit" value="news页面"/>
+</from>
+<ul>
 
-    </tr>
-</table>
+    <li class="pageNumber"><a href="#" class="prev">首页</a></li>
+    <li class="pageNumber"><a href="#">上一页</a></li>
+    <li class="pageNumber"><a href="#">1</a></li>
+    <li class="pageNumber"><a href="#">2</a></li>
+    <li class="pageNumber"><a href="#">下一页</a></li>
+    <li class="pageNumber"><a href="#" class="next">末页</a></li>
+</ul>
 </body>
 </html>

@@ -17,6 +17,7 @@ public interface UserService {
     List<User> loginUser(String username, String password);
     List<User> IdUser(int id);
     List<User> AllUser();
+    List<User> SlUser(int sex);
     int AddUser(String loginName,String userName,String password,int sex,String identityCode,String email,String mobile,int type);
     int DelUser(int id);
     int UpUser(int id,String loginName,String userName,String password,int sex,String identityCode,String email,String mobile);
